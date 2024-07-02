@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/tipo-transaccion")
+@RequestMapping("/api/tipos")
 public class TipoTransaccionController {
 
     @Autowired
@@ -21,7 +21,7 @@ public class TipoTransaccionController {
         return tipoTransaccionService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/api/tipos/{id}")
     public ResponseEntity<TipoTransaccion> getById(@PathVariable String id) {
         Optional<TipoTransaccion> tipoTransaccion = tipoTransaccionService.findById(id);
         return tipoTransaccion.map(ResponseEntity::ok)
@@ -33,7 +33,7 @@ public class TipoTransaccionController {
         return tipoTransaccionService.save(tipoTransaccion);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/api/tipos/{id}")
     public ResponseEntity<TipoTransaccion> update(@PathVariable String id, @RequestBody TipoTransaccion tipoTransaccion) {
         if (!tipoTransaccionService.findById(id).isPresent()) {
             return ResponseEntity.notFound().build();
@@ -42,7 +42,7 @@ public class TipoTransaccionController {
         return ResponseEntity.ok(tipoTransaccionService.save(tipoTransaccion));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/api/tipos/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id) {
         if (!tipoTransaccionService.findById(id).isPresent()) {
             return ResponseEntity.notFound().build();
