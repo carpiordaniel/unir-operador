@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/transaccion")
+@RequestMapping("/api/transacciones")
 
 public class TransaccionController {
 
@@ -25,7 +25,7 @@ public class TransaccionController {
     @Autowired
     private TransaccionServiceImpl ordersService;
 
-    @PostMapping("/create")
+    @PostMapping("/transacciones")
     public ResponseEntity<TransaccionResponse> createOrder(@RequestBody TransaccionRequest orderRequest) {
         TransaccionResponse orderResponse = ordersService.createTransaccion(orderRequest);
         return new ResponseEntity<>(orderResponse, HttpStatus.valueOf(orderResponse.getStatusCode()));
@@ -35,7 +35,7 @@ public class TransaccionController {
         return transaccionService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/api/transacciones/{id}")
     public ResponseEntity<Transaccion> getById(@PathVariable TransaccionId id) {
         Optional<Transaccion> transaccion = transaccionService.findById(id);
         return transaccion.map(ResponseEntity::ok)
@@ -47,7 +47,7 @@ public class TransaccionController {
         return transaccionService.save(transaccion);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/api/transacciones/{id}")
     public ResponseEntity<Transaccion> update(@PathVariable TransaccionId id, @RequestBody Transaccion transaccion) {
         if (!transaccionService.findById(id).isPresent()) {
             return ResponseEntity.notFound().build();
@@ -56,7 +56,7 @@ public class TransaccionController {
         return ResponseEntity.ok(transaccionService.save(transaccion));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/api/transacciones/{id}")
     public ResponseEntity<Void> delete(@PathVariable TransaccionId id) {
         if (!transaccionService.findById(id).isPresent()) {
             return ResponseEntity.notFound().build();

@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/usuario")
+@RequestMapping("/api/usuarios")
 
 public class UsuarioController {
 
@@ -22,7 +22,7 @@ public class UsuarioController {
         return usuarioService.findAll();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/api/usuarios/{id}")
     public ResponseEntity<Usuario> getById(@PathVariable String id) {
         Optional<Usuario> usuario = usuarioService.findById(id);
         return usuario.map(ResponseEntity::ok)
@@ -34,7 +34,7 @@ public class UsuarioController {
         return usuarioService.save(usuario);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/api/usuarios/{id}")
     public ResponseEntity<Usuario> update(@PathVariable String id, @RequestBody Usuario usuario) {
         if (!usuarioService.findById(id).isPresent()) {
             return ResponseEntity.notFound().build();
@@ -43,7 +43,7 @@ public class UsuarioController {
         return ResponseEntity.ok(usuarioService.save(usuario));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/api/usuarios/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id) {
         if (!usuarioService.findById(id).isPresent()) {
             return ResponseEntity.notFound().build();
