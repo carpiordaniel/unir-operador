@@ -1,6 +1,5 @@
 server:
   port: ${PORT:8082}
-  fullAddress: ${HOSTNAME:http://localhost}:${PORT:8082}
 
 spring:
   application:
