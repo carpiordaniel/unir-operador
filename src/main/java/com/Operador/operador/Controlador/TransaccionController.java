@@ -25,7 +25,7 @@ public class TransaccionController {
     @Autowired
     private TransaccionServiceImpl ordersService;
 
-    @PostMapping("/transacciones")
+    @PostMapping("/api/transacciones")
     public ResponseEntity<TransaccionResponse> createOrder(@RequestBody TransaccionRequest orderRequest) {
         TransaccionResponse orderResponse = ordersService.createTransaccion(orderRequest);
         return new ResponseEntity<>(orderResponse, HttpStatus.valueOf(orderResponse.getStatusCode()));
