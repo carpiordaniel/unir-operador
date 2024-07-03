@@ -26,10 +26,8 @@ eureka:
     service-url:
       defaultZone: ${EUREKA_URL:http://localhost:8761/eureka}
   instance:
-    preferIpAddress: false
+    preferIpAddress: false  
     hostname: ${HOSTNAME:localhost}
-    
-
 
 orderProduct:
-  url: http://buscador-service/api/pelicula/%s
+  url: http://buscador-service/api/peliculas/%s
