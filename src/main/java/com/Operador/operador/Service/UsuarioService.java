@@ -8,7 +8,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import lombok.extern.log4j.Log4j2;
 
+@Log4j2 
 @Service
 public class UsuarioService {
 
@@ -20,6 +22,7 @@ public class UsuarioService {
     }
 
     public Optional<Usuario> findById(String id) {
+        log.warn(id);
         return usuarioRepository.findById(id);
     }
 
