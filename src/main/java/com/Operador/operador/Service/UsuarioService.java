@@ -22,6 +22,7 @@ public class UsuarioService {
     }
 
     public Optional<Usuario> findById(String id) {
+        log.info("Consulta ID");
         log.info(id);
         return usuarioRepository.findById(id);
     }
