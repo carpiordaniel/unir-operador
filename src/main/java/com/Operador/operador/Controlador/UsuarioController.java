@@ -8,16 +8,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("/api/usuarios")
-
+@RequiredArgsConstructor
+@Slf4j
 public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
 
-    @GetMapping
+    @GetMapping("/api/usuarios")
     public List<Usuario> getAll() {
         return usuarioService.findAll();
     }
@@ -29,7 +31,7 @@ public class UsuarioController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping("/api/usuarios")
     public Usuario create(@RequestBody Usuario usuario) {
         return usuarioService.save(usuario);
     }
@@ -46,7 +48,7 @@ public class UsuarioController {
     @DeleteMapping("/api/usuarios/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id) {
         if (!usuarioService.findById(id).isPresent()) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.ok().build();
         }
         usuarioService.deleteById(id);
         return ResponseEntity.noContent().build();
