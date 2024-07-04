@@ -14,10 +14,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("/api/transacciones")
-
+@RequiredArgsConstructor
+@Slf4j
 public class TransaccionController {
 
     @Autowired
@@ -30,7 +32,7 @@ public class TransaccionController {
         TransaccionResponse orderResponse = ordersService.createTransaccion(orderRequest);
         return new ResponseEntity<>(orderResponse, HttpStatus.valueOf(orderResponse.getStatusCode()));
     }
-    @GetMapping
+    @GetMapping("/api/transacciones")
     public List<Transaccion> getAll() {
         return transaccionService.findAll();
     }
@@ -42,7 +44,7 @@ public class TransaccionController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping("/transacciones")
     public Transaccion create(@RequestBody Transaccion transaccion) {
         return transaccionService.save(transaccion);
     }
