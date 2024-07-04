@@ -22,7 +22,7 @@ public class UsuarioService {
     }
 
     public Optional<Usuario> findById(String id) {
-        log.warn(id);
+        log.info(id);
         return usuarioRepository.findById(id);
     }
 
