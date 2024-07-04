@@ -8,16 +8,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("/api/usuarios")
-
+@RequiredArgsConstructor
+@Slf4j
 public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;
 
-    @GetMapping
+    @GetMapping("/api/usuarios")
     public List<Usuario> getAll() {
         return usuarioService.findAll();
     }
