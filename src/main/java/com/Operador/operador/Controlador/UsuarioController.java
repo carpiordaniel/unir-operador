@@ -31,7 +31,7 @@ public class UsuarioController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping("/api/usuarios")
     public Usuario create(@RequestBody Usuario usuario) {
         return usuarioService.save(usuario);
     }
@@ -48,7 +48,7 @@ public class UsuarioController {
     @DeleteMapping("/api/usuarios/{id}")
     public ResponseEntity<Void> delete(@PathVariable String id) {
         if (!usuarioService.findById(id).isPresent()) {
-            return ResponseEntity.notFound().build();
+            return ResponseEntity.ok().build();
         }
         usuarioService.deleteById(id);
         return ResponseEntity.noContent().build();
