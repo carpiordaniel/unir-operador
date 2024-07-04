@@ -8,15 +8,18 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("/api/tipos")
+@RequiredArgsConstructor
+@Slf4j
 public class TipoTransaccionController {
 
     @Autowired
     private TipoTransaccionService tipoTransaccionService;
 
-    @GetMapping
+    @GetMapping("/api/tipos")
     public List<TipoTransaccion> getAll() {
         return tipoTransaccionService.findAll();
     }
@@ -28,7 +31,7 @@ public class TipoTransaccionController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-    @PostMapping
+    @PostMapping("/api/tipos")
     public TipoTransaccion create(@RequestBody TipoTransaccion tipoTransaccion) {
         return tipoTransaccionService.save(tipoTransaccion);
     }
